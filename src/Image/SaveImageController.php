@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\User;
+namespace App\Image;
 
 use App\Controller;
 use Illuminate\Database\Query\Builder;
@@ -22,15 +22,15 @@ class SaveImageController extends Controller
 
     public function call()
     {
-        $user = $this->request->getParsedBody();
+        $image = $this->request->getParsedBody();
 
-       $userId = $this->table->insertGetId(Array(
-            "name" => $user["name"],
-            "occupation" => $user["occupation"]
+        $imageId = $this->table->insertGetId(Array(
+            "name" => $image["name"],
+            "Post_id" => $image["postId"]
         ));
 
-        $userPersisted = $this->table->find($userId);
+        $imagePersisted = $this->table->find($imageId);
 
-        return $this->response->withJSON($userPersisted,200,JSON_UNESCAPED_UNICODE);
+        return $this->response->withJSON($imagePersisted,200,JSON_UNESCAPED_UNICODE);
     }
 }

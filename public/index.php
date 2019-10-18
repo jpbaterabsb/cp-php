@@ -28,4 +28,28 @@ $app->group('/post', function (\Slim\App $app) {
     $app->put('/{id}', \App\Post\UpdatePostController::class);
 });
 
+$app->group('/image', function (\Slim\App $app) {
+    $app->get('/{id}', \App\Image\FindOneImageController::class);
+    $app->get('', \App\Image\FindAllImageController::class);
+    $app->post('', \App\Image\SaveImageController::class);
+    $app->put('/{id}', \App\Image\UpdateImageController::class);
+});
+
+
+$app->group('/comment', function (\Slim\App $app) {
+    $app->get('/{id}', \App\Comment\FindOneCommentController::class);
+    $app->get('', \App\Comment\FindAllCommentController::class);
+    $app->post('', \App\Comment\SaveCommentController::class);
+    $app->put('/{id}', \App\Comment\UpdateCommentController::class);
+});
+
+
+
+$app->group('/answer', function (\Slim\App $app) {
+    $app->get('/{id}', \App\Answer\FindOneAnswerController::class);
+    $app->get('', \App\Answer\FindAllAnswerController::class);
+    $app->post('', \App\Answer\SaveAnswerController::class);
+    $app->put('/{id}', \App\Answer\UpdateAnswerController::class);
+});
+
 $app->run();

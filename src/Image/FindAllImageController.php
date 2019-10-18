@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\User;
+namespace App\Image;
 
 
 use Illuminate\Database\Query\Builder;

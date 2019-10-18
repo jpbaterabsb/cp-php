@@ -1,13 +1,11 @@
 <?php
 
-
-namespace App\Image;
-
+namespace App\Comment;
 use Illuminate\Database\Query\Builder;
 use Psr\Log\LoggerInterface;
 use \App\Controller;
 
-class FindOneImageController extends Controller
+class FindOneCommentController extends Controller
 {
     protected $logger;
     protected $table;
@@ -23,10 +21,10 @@ class FindOneImageController extends Controller
 
     public function call()
     {
-        $imageId = $this->args['id'];
+        $commentId = $this->args['id'];
 
-        $image = $this->table->find($imageId);
+        $comment = $this->table->find($commentId);
 
-        return $this->response->withJSON($image,200,JSON_UNESCAPED_UNICODE);
+        return $this->response->withJSON($comment,200,JSON_UNESCAPED_UNICODE);
     }
 }

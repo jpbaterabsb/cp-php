@@ -1,13 +1,12 @@
 <?php
 
+namespace App\Answer;
 
-namespace App\Image;
-
+use App\Controller;
 use Illuminate\Database\Query\Builder;
 use Psr\Log\LoggerInterface;
-use \App\Controller;
 
-class FindOneImageController extends Controller
+class UpdateAnswerController extends Controller
 {
     protected $logger;
     protected $table;
@@ -23,10 +22,12 @@ class FindOneImageController extends Controller
 
     public function call()
     {
-        $imageId = $this->args['id'];
+        $answerId = $this->args['id'];
 
-        $image = $this->table->find($imageId);
+        Answer::where('id',$answerId)
+                ->delete();
 
-        return $this->response->withJSON($image,200,JSON_UNESCAPED_UNICODE);
+
+        return $this->response->withJSON($answer,200,JSON_UNESCAPED_UNICODE);
     }
 }

@@ -1,13 +1,11 @@
 <?php
 
-
-namespace App\Image;
-
+namespace App\Answer;
 use Illuminate\Database\Query\Builder;
 use Psr\Log\LoggerInterface;
 use \App\Controller;
 
-class FindOneImageController extends Controller
+class FindOneAnswerController extends Controller
 {
     protected $logger;
     protected $table;
@@ -23,10 +21,10 @@ class FindOneImageController extends Controller
 
     public function call()
     {
-        $imageId = $this->args['id'];
+        $answerId = $this->args['id'];
 
-        $image = $this->table->find($imageId);
+        $answer = $this->table->find($answerId);
 
-        return $this->response->withJSON($image,200,JSON_UNESCAPED_UNICODE);
+        return $this->response->withJSON($answer,200,JSON_UNESCAPED_UNICODE);
     }
 }

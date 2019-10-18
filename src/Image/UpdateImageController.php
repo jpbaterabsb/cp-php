@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\User;
+namespace App\Image;
 
 use App\Controller;
 use Illuminate\Database\Query\Builder;
@@ -23,10 +23,14 @@ class UpdateImageController extends Controller
 
     public function call()
     {
-        $user = $this->request->getParsedBody();
-        $userId = $this->table
-            ->where('id',$user['id'])
-            ->update($user);
-        return $this->response->withJSON($user,200,JSON_UNESCAPED_UNICODE);
+        $image = $this->request->getParsedBody();
+        $imageId = $this->table
+            ->where('id',$image['id'])
+            ->update(array(
+                'id' => $image['id'],
+                'name' => $image['name'],
+                'Post_id' => $image['postId']
+            ));
+        return $this->response->withJSON($image,200,JSON_UNESCAPED_UNICODE);
     }
 }
