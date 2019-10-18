@@ -19,5 +19,6 @@ return function (App $app) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
         $group->post('', SaveUserAction::class);
+        $group->post('', SaveUserAction::class);
     });
 };
