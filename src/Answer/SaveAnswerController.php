@@ -8,14 +8,10 @@ use Psr\Log\LoggerInterface;
 
 class SaveAnswerController extends Controller
 {
-    protected $logger;
+
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    ) {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 

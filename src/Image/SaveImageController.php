@@ -9,14 +9,10 @@ use Psr\Log\LoggerInterface;
 
 class SaveImageController extends Controller
 {
-    protected $logger;
+
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    ) {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 
@@ -24,13 +20,11 @@ class SaveImageController extends Controller
     {
         $image = $this->request->getParsedBody();
 
-        $imageId = $this->table->insertGetId(Array(
+        $imagePersisted = Image::create(Array(
             "name" => $image["name"],
             "Post_id" => $image["postId"]
         ));
-
-        $imagePersisted = $this->table->find($imageId);
-
+        
         return $this->response->withJSON($imagePersisted,200,JSON_UNESCAPED_UNICODE);
     }
 }

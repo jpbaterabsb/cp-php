@@ -10,21 +10,16 @@ use \App\Controller;
 
 class FindAllImageController extends Controller
 {
-    protected $logger;
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    )
-    {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 
+
     public function call()
     {
-        $user = $this->table->get();
-        return $this->response->withJSON($user,200,JSON_UNESCAPED_UNICODE);
+        $image = Image::all();
+        return $this->response->withJSON($image,200,JSON_UNESCAPED_UNICODE);
     }
 }

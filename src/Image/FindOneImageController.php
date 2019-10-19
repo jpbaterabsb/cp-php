@@ -9,15 +9,10 @@ use \App\Controller;
 
 class FindOneImageController extends Controller
 {
-    protected $logger;
+
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    )
-    {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 
@@ -25,7 +20,7 @@ class FindOneImageController extends Controller
     {
         $imageId = $this->args['id'];
 
-        $image = $this->table->find($imageId);
+        $image = Image::find($imageId);
 
         return $this->response->withJSON($image,200,JSON_UNESCAPED_UNICODE);
     }

@@ -9,23 +9,14 @@ use \App\Controller;
 
 class FindOneUserController extends Controller
 {
-    protected $logger;
-    protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    )
-    {
-        $this->logger = $logger;
-        $this->table = $table;
-    }
+    public function __construct($table){}
 
     public function call()
     {
         $userId = $this->args['id'];
 
-        $user = $this->table->find($userId);
+        $user = User::find($userId);
 
         return $this->response->withJSON($user,200,JSON_UNESCAPED_UNICODE);
     }

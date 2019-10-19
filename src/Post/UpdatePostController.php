@@ -9,15 +9,9 @@ use Psr\Log\LoggerInterface;
 
 class UpdatePostController extends Controller
 {
-    protected $logger;
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    )
-    {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 
@@ -33,6 +27,6 @@ class UpdatePostController extends Controller
                 'id' => $post['id'],
                 'message' => $post['message']
             ));
-        return $this->response->withJSON($post,200,JSON_UNESCAPED_UNICODE);
+        return $this->response->withJSON([],200,JSON_UNESCAPED_UNICODE);
     }
 }

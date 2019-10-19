@@ -2,24 +2,20 @@
 
 namespace App\Comment;
 
-use App\Answer\Comment;
+use App\Comment\Comment;
 use Illuminate\Database\Query\Builder;
 use Psr\Log\LoggerInterface;
 use \App\Controller;
 
 class FindAllCommentController extends Controller
 {
-    protected $logger;
+
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    )
-    {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
+
 
     public function call()
     {

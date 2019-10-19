@@ -8,21 +8,16 @@ use \App\Controller;
 
 class FindAllAnswerController extends Controller
 {
-    protected $logger;
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    )
-    {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 
+
     public function call()
     {
-        $answer = Answer::all();
+        $answer = Answer::with('comment')->get();
         return $this->response->withJSON($answer,200,JSON_UNESCAPED_UNICODE);
     }
 }

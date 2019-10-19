@@ -8,14 +8,10 @@ use Psr\Log\LoggerInterface;
 
 class SavePostController extends Controller
 {
-    protected $logger;
+
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    ) {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 
@@ -25,13 +21,11 @@ class SavePostController extends Controller
 
         $dateDb = date('Y-m-d H:i:s');
 
-        $postId = $this->table->insertGetId(Array(
+        $postPersisted = Post::create(Array(
             "message" => $post["message"],
             "User_id" => $post["userId"],
             "Post_date" => $dateDb,
         ));
-
-        $postPersisted = $this->table->find($postId);
 
         return $this->response->withJSON($postPersisted,200,JSON_UNESCAPED_UNICODE);
     }

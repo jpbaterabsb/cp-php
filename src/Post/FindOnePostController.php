@@ -9,15 +9,10 @@ use \App\Controller;
 
 class FindOnePostController extends Controller
 {
-    protected $logger;
+
     protected $table;
 
-    public function __construct(
-        LoggerInterface $logger,
-        Builder $table
-    )
-    {
-        $this->logger = $logger;
+    public function __construct($table){
         $this->table = $table;
     }
 
@@ -25,7 +20,7 @@ class FindOnePostController extends Controller
     {
         $postId = $this->args['id'];
 
-        $post = $this->table->find($postId);
+        $post = Post::find($postId);
 
         return $this->response->withJSON($post,200,JSON_UNESCAPED_UNICODE);
     }
