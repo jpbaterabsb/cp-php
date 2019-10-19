@@ -24,3 +24,7 @@ composer start
 
 # Note
 Database have already been configured
+Postman links for tests
+```
+https://www.getpostman.com/collections/c1bf2f7b00b207dce5f1
+```
