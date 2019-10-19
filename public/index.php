@@ -50,6 +50,7 @@ $app->group('/answer', function (\Slim\App $app) {
     $app->get('', \App\Answer\FindAllAnswerController::class);
     $app->post('', \App\Answer\SaveAnswerController::class);
     $app->put('/{id}', \App\Answer\UpdateAnswerController::class);
+    $app->delete('/{id}', \App\Answer\DeleteAnswerController::class);
 });
 
 $app->run();

@@ -22,7 +22,7 @@ class FindAllAnswerController extends Controller
 
     public function call()
     {
-        $answer = $this->table->get();
+        $answer = Answer::all();
         return $this->response->withJSON($answer,200,JSON_UNESCAPED_UNICODE);
     }
 }

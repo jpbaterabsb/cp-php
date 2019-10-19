@@ -23,7 +23,7 @@ class FindOneAnswerController extends Controller
     {
         $answerId = $this->args['id'];
 
-        $answer = $this->table->find($answerId);
+        $answer =   Answer::find($answerId);
 
         return $this->response->withJSON($answer,200,JSON_UNESCAPED_UNICODE);
     }

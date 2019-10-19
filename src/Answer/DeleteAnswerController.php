@@ -22,20 +22,12 @@ class DeleteAnswerController extends Controller
 
     public function call()
     {
-        $answer = $this->request->getParsedBody();
+        Answer::where('id',$this->args  ['id'])
+        ->delete();
 
-        if ($answer['id'] != $this->args['id']){
-            throw new \Exception("body id different of path variable id");
-        }
+        $this->response
+        ->withStatus(200);
 
-        $answerId = $this->table
-            ->where('id',$answer['id'])
-            ->update(array(
-                'id' => $answer['id'],
-                'answer' => $answer['answer'],
-                'Comment_id' => $answer['commentId'],
-                'Answer_date' => date('Y-m-d H:i:s'),
-            ));
-        return $this->response->withJSON($answer,200,JSON_UNESCAPED_UNICODE);
+        return $this->response;
     }
 }

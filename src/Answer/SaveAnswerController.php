@@ -22,15 +22,14 @@ class SaveAnswerController extends Controller
     public function call()
     {
         $answer = $this->request->getParsedBody();
+        $answerForPersist = new Answer();
 
-        $answerId = $this->table->insertGetId(Array(
+        $answerPersisted = Answer::create(Array(
             "answer" => $answer["answer"],
             "Comment_id" => $answer["commentId"],
             "Answer_date" => date('Y-m-d H:i:s')
         ));
-
-        $answerPersisted = $this->table->find($answerId);
-
+        
         return $this->response->withJSON($answerPersisted,200,JSON_UNESCAPED_UNICODE);
     }
 }

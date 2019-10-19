@@ -23,7 +23,7 @@ class FindOneCommentController extends Controller
     {
         $commentId = $this->args['id'];
 
-        $comment = $this->table->find($commentId);
+        $comment = Comment::find($commentId);
 
         return $this->response->withJSON($comment,200,JSON_UNESCAPED_UNICODE);
     }

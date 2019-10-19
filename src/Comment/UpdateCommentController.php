@@ -27,7 +27,7 @@ class UpdateCommentController extends Controller
             throw new \Exception("body id different of path variable id");
         }
 
-        $commentId = $this->table
+        $this->table
             ->where('id',$comment['id'])
             ->update(array(
                 'id' => $comment['id'],

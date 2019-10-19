@@ -124,6 +124,12 @@ $container[\App\Answer\UpdateAnswerController::class] = function ($c) {
     return new \App\Answer\UpdateAnswerController($logger, $table);
 };
 
+$container[\App\Answer\DeleteAnswerController::class] = function ($c) {
+    $logger = $c->get('logger');
+    $table = $c->get('db')->table('Answer');
+    return new \App\Answer\DeleteAnswerController($logger, $table);
+};
+
 
 
 

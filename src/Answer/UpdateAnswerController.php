@@ -24,10 +24,18 @@ class UpdateAnswerController extends Controller
     {
         $answerId = $this->args['id'];
 
+        $request = $this->request->getParsedBody();
+
+        $answer = Array(
+            "Comment_id" => $request['commentId'],
+            "Answer_date" => date('Y-m-d H:i:s'),
+            "answer" => $request['answer'],
+        );
+
         Answer::where('id',$answerId)
-                ->delete();
+                ->update($answer);
 
-
+        $answer['id'] = $answerId;
         return $this->response->withJSON($answer,200,JSON_UNESCAPED_UNICODE);
     }
 }
